@@ -27,10 +27,10 @@ Y se categorizan por 4 simbolos:
 El objetivo es crear una pila de cartas empezando con la más baja y terminando con la más alta sobre cada una de las cuatro cartas de inicio de la esquina superior derecha. Cada pila solo puede contener cartas del mismo palo.  
 
 ## 🦾 Mecanicas del juego
-### Mover carta
-Haciendo uso del cursor, el usuario podrá tomar una carta y moverla para apilarla sobre otra carta, ya sea para formar una escalera o para moverla al mazo final por palo. 
-
-**Estructura:**
+<details><summary><b>Mover carta</b></summary>
+Haciendo uso del cursor, el usuario podrá tomar una carta y moverla para apilarla sobre otra carta, ya sea para formar una escalera o para moverla al mazo final por palo.
+ 
+**Estructura(Expander):**
 ```mermaid
 flowchart LR
 A(A) --> B(B)
@@ -38,14 +38,16 @@ A(A) --> B(B)
 style A fill:#E54B4D,color:#fff
 style B fill:#232425,color:#fff
 ```
-**Flujograma:**
+ **Diagrama de flujo (Expander)**
 ```mermaid
-flowchart TD;
+flowchart TB;
+subgraph MESA
 Start([INICIO]) --> T1["Se selecciona la carta"];
 T1-->T2["Se mueve la carta de la <b>posicion A</b> a la <b>posicion B</b>"];
 T2-->wasMoveToPile{"¿Se mueve la carta la posicion inicial?"};
 wasMoveToPile--NO---->T3["Se selecciona la columna"];
 wasMoveToPile--SI---->T4["Se selecciona la pila"];
+subgraph COLUMNAS
 T3-->isColumnEmpty{"¿Está la columna vacía?"};
 isColumnEmpty--SI-->isCardKing{"¿Tiene la carta el valor de Rey(K)?"};
 isCardKing--NO-->setToInitialPosition["La carta regresa a su posicion inicial"];
@@ -58,6 +60,8 @@ isLowerTo--SI-->Result["La carta A se apila sobre la carta B"];
 setToInitialPosition --> End([FINAL]);
 Result-->End;
 newColumn-->End;
+end
+subgraph PILAS DE INICIO
 T4-->isPileEmpty{"¿Está la pila vacia?"};
 isPileEmpty--SI-->isCardAs{"¿Tiene la carta el valor de un AS?"};
 isCardAs--NO-->setToInitialPosition2;
@@ -69,5 +73,8 @@ isUpperTo--SI-->Result2["La carta A se apila sobre la carta B"];
 isUpperTo--NO-->setToInitialPosition2["La carta regresa a su posicion inicial"];
 setToInitialPosition2-->End2([FINAL]);
 Result2-->End2;
+end
+end
 ```
-### Holaaaaa 
+</details>
+
