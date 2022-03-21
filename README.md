@@ -40,7 +40,7 @@ style B fill:#232425,color:#fff
 ```
  **Diagrama de flujo (Expander)**
 ```mermaid
-flowchart TB;
+flowchart TD;
 subgraph MESA
 Start([INICIO]) --> T1["Se selecciona la carta"];
 T1-->T2["Se mueve la carta de la <b>posicion A</b> a la <b>posicion B</b>"];
